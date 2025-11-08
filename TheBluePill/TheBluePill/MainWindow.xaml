@@ -1,0 +1,84 @@
+﻿<Window x:Class="TheBluePill.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TheBluePill"
+        mc:Ignorable="d"
+        Title="Fluid Segmented Control" Height="450" Width="800"
+        Background="#F0F8FF">
+    <Window.Resources>
+        <Style x:Key="SegmentButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Foreground" Value="#999999"/>
+            <!-- Default text color (gray) -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Border x:Name="ContainerBorder"
+            Width="360" Height="50"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Background="White"
+            CornerRadius="25">
+
+        <Grid>
+            <Border x:Name="PillIndicator"
+                    Width="120"
+                    Height="50"
+                    CornerRadius="25"
+                    Background="#1E90FF"
+                    HorizontalAlignment="Left">
+
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="PillTranslate" X="0"/>
+                </Border.RenderTransform>
+
+            </Border>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="MUSIC"
+                        x:Name="MusicButton"
+                        Tag="0"
+                        Click="SegmentButton_Click"
+                        Style="{StaticResource SegmentButton}"
+                        Foreground="White"/>
+                <!-- Segment 2: MOVIE -->
+                <Button Grid.Column="1" Content="MOVIE"
+                        x:Name="MovieButton"
+                        Tag="1"
+                        Click="SegmentButton_Click"
+                        Style="{StaticResource SegmentButton}"/>
+
+                <!-- Segment 3: APPS -->
+                <Button Grid.Column="2" Content="APPS"
+                        x:Name="AppsButton"
+                        Tag="2"
+                        Click="SegmentButton_Click"
+                        Style="{StaticResource SegmentButton}"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
